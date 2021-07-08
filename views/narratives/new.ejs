@@ -1,0 +1,18 @@
+<%- include('../partials/header') %>
+<!-- Masthead-->
+<header class="masthead">
+  <div class="container">
+    <div class="masthead-subheading">Add Narratives</div>
+  </div>
+</header>
+<!-- Services-->
+<section class="page-section" id="narratives">
+  <p>Add narratives</p>
+
+  <form action="/narratives" method="post">
+    <input type="text" name="newNarrative"/>
+    <button type="submit">Add Narrative</button>
+  </form>
+</section>
+<!-- Footer-->
+<%- include('../partials/footer') %>
