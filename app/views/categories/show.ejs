@@ -1,0 +1,68 @@
+<%- include('../partials/header') %>
+<!-- Masthead-->
+<header class="masthead">
+  <div class="container">
+    <div class="masthead-subheading"><%=title%></div>
+  </div>
+</header>
+<!-- Services-->
+<section class="page-section" id="students">
+  <p>This is <%=title%></p>
+
+  <h3>List of <%=title%>s</h3>
+
+  <ul>
+    <% category.subcategories.forEach(subcategory => { %>
+    <li>
+      <form action="/categories/<%-category._id%>/subcategories/<%-subcategory%>" method="GET">
+      <%=subcategory%>
+      <button class = "btn btn-sm btn-secondary" type ="submit">Update</button>
+    </form>
+    </li>
+    <% }) %>
+
+    <li>
+      <form action="/categories/<%-category._id%>/subcategories" method="POST">
+        <input
+          type="text"
+          name="newSubcategory"
+          <%- 
+          value!=='' ?
+          `value = ${value}` :
+          placeholder="Add a new subcategory"
+          %>
+        />
+        <div class="btn-group me-3">
+          <button class="btn btn-primary" type="submit">
+            Add a <%=title%>
+          </button>
+        </div>
+      </form>
+    </li>
+  </ul>
+
+  <div class="d-flex justify-content-center mt-4">
+    <div class="btn-toolbar">
+      <div class="btn-group me-3">
+        <form action="/categories?_method=GET" method="GET">
+          <button class="btn btn-secondary" type="submit">
+            Back to Categories
+          </button>
+        </form>
+      </div>
+
+      <div class="btn-group me-3">
+        <form
+          action="/categories/<%-category._id%>?_method=DELETE"
+          method="POST"
+        >
+          <button class="btn btn-danger" type="submit">
+            Delete <%=title%>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Footer-->
+<%- include('../partials/footer') %>

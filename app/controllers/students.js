@@ -7,16 +7,19 @@ module.exports = {
   new: newStudent,
   create,
   show,
+  delete: deleteStudent,
 };
 
 async function index(req, res) {
   try {
     const students = await Student.find({});
     const studentNarratives = {};
-    for (let student of students){
+    for (let student of students) {
       studentNarratives[student.name] = [];
       for (let narrative of student.narratives)
-      studentNarratives[student.name].push(await Narrative.findById(narrative));
+        studentNarratives[student.name].push(
+          await Narrative.findById(narrative)
+        );
     }
     res.render("students/index.ejs", {
       students,
@@ -44,7 +47,7 @@ async function create(req, res) {
 async function show(req, res) {
   try {
     const student = await Student.findById(req.params.id);
-    const narrativeIds = await Narrative.find({student:student._id});
+    const narrativeIds = await Narrative.find({ student: student._id });
     const narratives = [];
     for (let id of narrativeIds) {
       const narrative = await Narrative.findById(id);
@@ -55,6 +58,19 @@ async function show(req, res) {
       narratives,
       title: `${student.name}`,
     });
+  } catch (err) {
+    res.send(err);
+  }
+}
+
+async function deleteStudent(req, res) {
+  try {
+    const student = await Student.findById(req.params.id);
+    for (let i = 0; i < student.narratives.length; i++) {
+      await Narrative.findByIdAndDelete(student.narratives[i]);
+    }
+    await Student.findByIdAndDelete(req.params.id);
+    res.redirect("/students");
   } catch (err) {
     res.send(err);
   }

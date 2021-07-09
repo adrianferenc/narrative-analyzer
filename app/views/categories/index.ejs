@@ -7,7 +7,16 @@
         </header>
         <!-- Services-->
         <section class="page-section" id="categories">
-            <p>These are the categories</p>
+            <p>These are the categories:</p>
+                <ul>
+                    <% categories.forEach(category => { %>
+                     <li> <a href="categories/<%-category._id%>"><%=category.name%></a>
+                    </li>
+                    <% }) %>
+                </ul>
+            <form action="/categories/new">
+                <button class="btn btn-primary">Add a category</button>
+              </form>
         </section>
         <!-- Footer-->
 <%- include('../partials/footer') %>

@@ -33,12 +33,13 @@
     </select>
   </div>
 
-    <div class ="col-12">
-    <div class ="form-control-lg">
-      <input  type="textarea" name="text" value = "<%= !!narrative ? narrative.text : `` %>"/>
-    </div>
-    <button type="submit" id = "student-submit"><%=request===`new` ? `Add Narrative` : `Update Narrative`%></button>
+    
+  <div class="form-group">
+    <label for="narrative-area">Enter Narrative</label>
+    <textarea class="form-control" id="narrative-area" name="text" rows="3"><%= !!narrative ? narrative.text : `` %></textarea>
   </div>
+    <button type="submit" id = "student-submit"><%=request===`new` ? `Add Narrative` : `Update Narrative`%></button>
+  
   </form>
 </section>
 
