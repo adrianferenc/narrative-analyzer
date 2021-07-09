@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/pets', {
+mongoose.connect('mongodb://localhost/narrative-analyzer', {
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true

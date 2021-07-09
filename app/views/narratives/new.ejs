@@ -2,17 +2,44 @@
 <!-- Masthead-->
 <header class="masthead">
   <div class="container">
-    <div class="masthead-subheading">Add Narratives</div>
+    <div class="masthead-subheading">Add Narrative</div>
   </div>
 </header>
 <!-- Services-->
 <section class="page-section" id="narratives">
-  <p>Add narratives</p>
+  <p>Add narrative</p>
 
-  <form action="/narratives" method="post">
-    <input type="text" name="newNarrative"/>
-    <button type="submit">Add Narrative</button>
+  <form 
+  <% if (request==='new') { %>
+    action="/narratives" method="post" 
+    <% } else { %>
+      action="/narratives/<%=narrative._id%>?_method=PUT" method="post" 
+  <% } %> 
+  >
+  <div class ="col-3">
+    <select
+      name="student"
+      id = "student-dropdown"
+      class="form-select form-select-sm"
+      aria-label=".form-select-sm example"
+    >
+    <% if (students.length!==1) { %>
+      <option selected>Pick a Student</option>
+    <% } %>
+      
+      <% students.forEach(student => { %>
+      <option value="<%-student._id%>" <%-students.length===1 ? `selected` : `` %>><%=student.name%></option>
+      <% }) %>
+    </select>
+  </div>
+
+    <div class ="col-12">
+    <div class ="form-control-lg">
+      <input  type="textarea" name="text" value = "<%= !!narrative ? narrative.text : `` %>"/>
+    </div>
+    <button type="submit" id = "student-submit"><%=request===`new` ? `Add Narrative` : `Update Narrative`%></button>
+  </div>
   </form>
 </section>
-<!-- Footer-->
+
 <%- include('../partials/footer') %>

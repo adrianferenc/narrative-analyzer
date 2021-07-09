@@ -6,17 +6,101 @@ module.exports = {
   index,
   new: newNarrative,
   create,
+  revise,
+  update,
+  delete: deleteNarrative,
 };
 
-function index(req, res) {
-  res.render("narratives/index.ejs", { title: "Narratives" });
+async function index(req, res) {
+  try {
+    const narratives = await Narrative.find({});
+    const students = {};
+    for (let narrative of narratives) {
+      if (narrative.student) {
+        const student = await Student.findById(narrative.student);
+        students[student._id] = student.name;
+      }
+    }
+    res.render("narratives/index.ejs", {
+      narratives,
+      students,
+      title: "Narratives",
+    });
+  } catch (err) {
+    res.send(err);
+  }
 }
 
-function newNarrative(req, res) {
-  res.render("narratives/new.ejs", { title: "Add a Narrative" });
+async function newNarrative(req, res) {
+  try {
+    const students = await Student.find({});
+    res.render("narratives/new.ejs", {
+      students,
+      title: "Add a Narrative",
+      narrative: "",
+      request: "new",
+    });
+  } catch (err) {
+    res.send(err);
+  }
 }
 
-function create(req, res) {
-    console.log(req.body);
-  res.redirect("/narratives");
+async function create(req, res) {
+  try {
+    const newNarrative = await Narrative.create(req.body);
+    const student = await Student.findById(newNarrative.student);
+    student.narratives.push(newNarrative._id);
+    await student.save();
+    res.redirect(`/narratives`);
+  } catch (err) {
+    if (newNarrative.student === undefined) {
+      res.redirect('/narratives/new');
+    } else {
+      res.send(err);
+    }
+  }
+}
+
+async function revise(req, res) {
+  try {
+    const narrative = await Narrative.findById(req.params.id);
+    const student = await Student.findById(narrative.student);
+    const students = [student];
+    res.render("narratives/new.ejs", {
+      students,
+      narrative,
+      title: "Add a Narrative",
+      request: "update",
+    });
+  } catch (err) {
+    res.send(err);
+  }
+}
+
+async function update(req, res) {
+  try {
+    const narrative = await Narrative.findById(req.params.id);
+    narrative.text = req.body.text;
+    narrative.save();
+    res.redirect(`/narratives`);
+  } catch (err) {
+    res.send(err);
+  }
+}
+
+async function deleteNarrative(req, res) {
+  try {
+    const narrative = await Narrative.findById(req.params.id);
+    const student = await Student.findById(narrative.student);
+    for (let i = 0; i < student.narratives.length; i++) {
+      if (''+student.narratives[i] === req.params.id) {
+        student.narratives = await student.narratives.splice(1, i);
+        await student.save();
+      }
+    }
+    await Narrative.findByIdAndDelete(req.params.id);
+    res.redirect("/narratives");
+  } catch (err) {
+    res.send(err);
+  }
 }

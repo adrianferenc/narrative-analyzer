@@ -1,10 +1,11 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const narrativeSchema = new mongoose.Schema(
   {
     text: { type: String, required: true },
-    creator: { type: String, required: true },
-    categories: []
+    student: { type: Schema.Types.ObjectId, ref: "Student" },
+    teacher: { type: String },
   },
   { timestamps: true }
 );

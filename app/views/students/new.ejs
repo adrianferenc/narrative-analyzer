@@ -2,16 +2,15 @@
 <!-- Masthead-->
 <header class="masthead">
   <div class="container">
-    <div class="masthead-subheading">Add Students</div>
+    <div class="masthead-subheading"><%=title%></div>
   </div>
 </header>
 <!-- Services-->
 <section class="page-section" id="students">
-  <p>Add students</p>
 
   <form action="/students" method="post">
-    <input type="text" name="newStudent" />
-    <button type="submit">Add Student</button>
+    <input class = "form-control input-lg" type="text" name="name" />
+    <button class = "btn btn-lg btn-primary" type="submit">Add Student</button>
   </form>
 </section>
 <!-- Footer-->

@@ -1,0 +1,25 @@
+<%- include('../partials/header') %>
+<!-- Masthead-->
+<header class="masthead">
+  <div class="container">
+    <div class="masthead-subheading"><%=title%></div>
+  </div>
+</header>
+<!-- Services-->
+<section class="page-section" id="students">
+  <p>This is <%=student.name%></p>
+
+  <h3>Narratives</h3>
+  <ul>
+    <% narratives.forEach(narrative => { %>
+    <li><%=narrative.text%></li>
+    <% }) %>
+  </ul>
+  <div class="d-flex justify-content-center mt-4">
+    <form action = "/narratives/new" method="GET">
+      <button class="btn-primary" type="submit">Add a Narrative</button>
+    </form>
+    </div>
+</section>
+<!-- Footer-->
+<%- include('../partials/footer') %>
