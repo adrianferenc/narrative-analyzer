@@ -10,41 +10,39 @@
   <p>This is <%=student.name%></p>
 
   <div>
-    <h3>Categories</h3>
+    <h3>
+      <a
+          style="text-decoration: none; color: black"
+          href="/categories"
+          >Categories</a
+        >
+      </h3>
     <ul class="list-group">
-      <% Object.keys(student.categories).forEach(category => { %>
-      <li class="list-group-item"><%=category%>: <%=student.categories[category]%>
-        <div
-        class="btn-toolbar"
-        role="toolbar"
-        aria-label="Toolbar with button groups"
-      >
-        <div class="btn-group me-2" role="group" aria-label="First group">
-          <form >
-            <button type="submit" class="btn btn-primary">Update Category</button>
-          </form>
-        </div>
-        <div class="btn-group me-2" role="group" aria-label="Second group">
-          <form>
-            <button type="submit" class="btn btn-secondary">Delete Category</button>
-          </form>
-        </div>
-        </div>
-      </li>
-      <% }) %>
-      <li > 
-        <div class="d-flex justify-content-center">
-        <form action = "/narratives/new" method="GET">
-        <button class="btn btn-primary" type="submit">Add a Category</button>
-      </form>
-    </div>
+      <% categories.forEach(category => { %>
+
+      <li class="list-group-item"><%=category.name%>: 
+        <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+          <option selected>None</option>
+          <% category.subcategories.forEach(subcategory => { %>
+            <option value="<%-subcategory%>"><%=subcategory%></option> 
+          <% }) %>
+        </select>
+
   </li>
+  <% }) %>
     </ul>
   </div>
+  
 
 
   <div>
-  <h3>Narratives</h3>
+  <h3>
+    <a
+          style="text-decoration: none; color: black"
+          href="/narratives"
+          >Narratives</a
+        >
+  </h3>
   <ul class="list-group">
     <% narratives.forEach(narrative => { %>
     <li class="list-group-item"><%=narrative.text%>

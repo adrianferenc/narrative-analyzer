@@ -16,11 +16,14 @@ async function index(req, res) {
     const studentNarratives = {};
     for (let student of students) {
       studentNarratives[student.name] = [];
-      for (let narrative of student.narratives)
+      for (let narrative of student.narratives) {
         studentNarratives[student.name].push(
           await Narrative.findById(narrative)
         );
+      }
     }
+    console.log("sm");
+    //console.log(studentNarratives);
     res.render("students/index.ejs", {
       students,
       studentNarratives,
@@ -53,9 +56,12 @@ async function show(req, res) {
       const narrative = await Narrative.findById(id);
       narratives.push(narrative);
     }
+    const categories = await Category.find({});
+    console.log(categories);
     res.render("students/show.ejs", {
       student,
       narratives,
+      categories,
       title: `${student.name}`,
     });
   } catch (err) {

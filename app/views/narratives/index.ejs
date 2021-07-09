@@ -10,46 +10,47 @@
 <section class="page-section" id="narratives">
   <% if (narratives.length>0) { %>
   <h3>List of Narratives</h3>
-  
-    <% narratives.forEach(narrative => { %>
 
-    
-      <div class="card">
-        <div class="card-body mt-1" >
-          <h5 class="card-title"><%=students[narrative.student]%></h5>
-          <p class="card-text"><%=narrative.text%></p>
-          <div
-          class="btn-toolbar"
-          role="toolbar"
-          aria-label="Toolbar with button groups"
+  <% narratives.forEach(narrative => { %>
+
+  <div class="card">
+    <div class="card-body mt-1">
+      <h5 class="card-title">
+        <a
+          style="text-decoration: none; color: black"
+          href="students/<%-narrative.student%>"
+          ><%=students[narrative.student]%></a
         >
-          <div class="btn-group me-2" role="group" aria-label="First group">
-            <form action="/narratives/<%-narrative._id%>" method="get">
-              <button type="submit" class="btn btn-primary">Update</button>
-            </form>
-          </div>
-          <div class="btn-group me-2" role="group" aria-label="Second group">
-            <form
-              action="/narratives/<%-narrative._id%>?_method=DELETE"
-              method="POST"
-            >
-              <button type="submit" class="btn btn-secondary">Delete</button>
-            </form>
-          </div>
+      </h5>
+      <p class="card-text"><%=narrative.text%></p>
+      <div
+        class="btn-toolbar"
+        role="toolbar"
+        aria-label="Toolbar with button groups"
+      >
+        <div class="btn-group me-2" role="group" aria-label="First group">
+          <form action="/narratives/<%-narrative._id%>" method="get">
+            <button type="submit" class="btn btn-primary">Update</button>
+          </form>
         </div>
+        <div class="btn-group me-2" role="group" aria-label="Second group">
+          <form
+            action="/narratives/<%-narrative._id%>?_method=DELETE"
+            method="POST"
+          >
+            <button type="submit" class="btn btn-secondary">Delete</button>
+          </form>
         </div>
       </div>
-    
+    </div>
+  </div>
 
-    
-    <% }) %>
-  
-  <% } %>
-<div class="d-flex justify-content-center mt-4">
-<form action = "/narratives/new" method="GET">
-  <button class="btn btn-primary" type="submit">Add a Narrative</button>
-</form>
-</div>
+  <% }) %> <% } %>
+  <div class="d-flex justify-content-center mt-4">
+    <form action="/narratives/new" method="GET">
+      <button class="btn btn-primary" type="submit">Add a Narrative</button>
+    </form>
+  </div>
 </section>
 <!-- Footer-->
 <%- include('../partials/footer') %>
