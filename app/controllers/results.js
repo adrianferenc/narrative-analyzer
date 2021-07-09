@@ -1,11 +1,11 @@
-const Student = require('../models/student');
-const Narrative = require('../models/narrative');
-const Category = require('../models/category');
+const Student = require("../models/student");
+const Narrative = require("../models/narrative");
+const Category = require("../models/category");
 
 module.exports = {
-	index
+  index,
 };
 
 function index(req, res) {
-	res.render('results/index.ejs', { title: 'Results'});
+  res.render("results/index.ejs", { title: "Results" });
 }

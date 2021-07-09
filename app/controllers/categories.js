@@ -46,7 +46,10 @@ async function show(req, res) {
 async function addSub(req, res) {
   try {
     const category = await Category.findById(req.params.id);
-    if (req.body.newSubcategory!=='' && !category.subcategories.includes(req.body.newSubcategory)) {
+    if (
+      req.body.newSubcategory !== "" &&
+      !category.subcategories.includes(req.body.newSubcategory)
+    ) {
       category.subcategories.push(req.body.newSubcategory);
       category.subcategories.sort();
       category.save();
@@ -71,7 +74,6 @@ async function deleteCategory(req, res) {
 }
 
 async function updateSub(req, res) {
-  console.log("test");
   try {
     const category = await Category.findById(req.params.categoryId);
     category.subcategories.splice(

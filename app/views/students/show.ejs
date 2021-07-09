@@ -9,17 +9,132 @@
 <section class="page-section" id="students">
   <p>This is <%=student.name%></p>
 
-  <h3>Narratives</h3>
-  <ul>
-    <% narratives.forEach(narrative => { %>
-    <li><%=narrative.text%></li>
-    <% }) %>
-  </ul>
-  <div class="d-flex justify-content-center mt-4">
-    <form action = "/narratives/new" method="GET">
-      <button class="btn-primary" type="submit">Add a Narrative</button>
-    </form>
+  <div>
+    <h3>Categories</h3>
+    <ul class="list-group">
+      <% Object.keys(student.categories).forEach(category => { %>
+      <li class="list-group-item"><%=category%>: <%=student.categories[category]%>
+        <div
+        class="btn-toolbar"
+        role="toolbar"
+        aria-label="Toolbar with button groups"
+      >
+        <div class="btn-group me-2" role="group" aria-label="First group">
+          <form >
+            <button type="submit" class="btn btn-primary">Update Category</button>
+          </form>
+        </div>
+        <div class="btn-group me-2" role="group" aria-label="Second group">
+          <form>
+            <button type="submit" class="btn btn-secondary">Delete Category</button>
+          </form>
+        </div>
+        </div>
+      </li>
+      <% }) %>
+      <li > 
+        <div class="d-flex justify-content-center">
+        <form action = "/narratives/new" method="GET">
+        <button class="btn btn-primary" type="submit">Add a Category</button>
+      </form>
     </div>
+  </li>
+    </ul>
+  </div>
+
+
+  <div>
+  <h3>Narratives</h3>
+  <ul class="list-group">
+    <% narratives.forEach(narrative => { %>
+    <li class="list-group-item"><%=narrative.text%>
+      <div
+      class="btn-toolbar"
+      role="toolbar"
+      aria-label="Toolbar with button groups"
+    >
+      <div class="btn-group me-2" role="group" aria-label="First group">
+        <form action="/narratives/<%-narrative._id%>" method="get">
+          <button type="submit" class="btn btn-primary">Update Narrative</button>
+        </form>
+      </div>
+      <div class="btn-group me-2" role="group" aria-label="Second group">
+        <form
+          action="/narratives/<%-narrative._id%>?_method=DELETE"
+          method="POST"
+        >
+          <button type="submit" class="btn btn-secondary">Delete Narrative</button>
+        </form>
+      </div>
+      </div>
+    </li>
+    <% }) %>
+    <li > 
+      <div class="d-flex justify-content-center">
+      <form action = "/narratives/new" method="GET">
+      <button class="btn btn-primary" type="submit">Add a Narrative</button>
+    </form>
+  </div>
+</li>
+  </ul>
+</div>
+  <div class="btn-toolbar d-flex justify-content-center mt-4" role="toolbar" aria-label="Toolbar with button groups">
+    
+<div class="btn-group me-2" role="group" aria-label="Second group">
+    <form action="/students/<%-student._id%>?_method=DELETE"
+              method="POST">
+        <button
+          type="button"
+          class="btn btn-danger"
+          data-bs-toggle="modal"
+          data-bs-target="#deleteModal"
+        >
+          Delete <%=student.name%>
+        </button>
+        <div
+          class="modal fade"
+          id="deleteModal"
+          data-bs-backdrop="static"
+          data-bs-keyboard="false"
+          tabindex="-1"
+          aria-labelledby="deleteModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">
+                  Deletion is Permanent
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                Deleting <%=student.name%> will also delete all narratives
+                associated with <%=student.name%>.
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button type="submit" class="btn btn-danger">
+                  Delete <%=student.name%>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
 </section>
 <!-- Footer-->
 <%- include('../partials/footer') %>

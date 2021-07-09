@@ -5,7 +5,7 @@ const studentSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
     narratives: [{ type: Schema.Types.ObjectId, ref: "Narrative" }],
-    categories: { type: Object },
+    categories: { type: Object, default: {} },
     teacher: { type: String },
   },
   { timestamps: true }

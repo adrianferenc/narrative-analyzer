@@ -54,7 +54,7 @@ async function create(req, res) {
     res.redirect(`/narratives`);
   } catch (err) {
     if (newNarrative.student === undefined) {
-      res.redirect('/narratives/new');
+      res.redirect("/narratives/new");
     } else {
       res.send(err);
     }
@@ -69,7 +69,7 @@ async function revise(req, res) {
     res.render("narratives/new.ejs", {
       students,
       narrative,
-      title: "Add a Narrative",
+      title: "Update Narrative",
       request: "update",
     });
   } catch (err) {
@@ -93,7 +93,7 @@ async function deleteNarrative(req, res) {
     const narrative = await Narrative.findById(req.params.id);
     const student = await Student.findById(narrative.student);
     for (let i = 0; i < student.narratives.length; i++) {
-      if (''+student.narratives[i] === req.params.id) {
+      if ("" + student.narratives[i] === req.params.id) {
         student.narratives = await student.narratives.splice(1, i);
         await student.save();
       }

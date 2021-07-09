@@ -2,12 +2,12 @@
 <!-- Masthead-->
 <header class="masthead">
   <div class="container">
-    <div class="masthead-subheading">Add Narrative</div>
+    <div class="masthead-subheading"><%=title%></div>
   </div>
 </header>
 <!-- Services-->
 <section class="page-section" id="narratives">
-  <p>Add narrative</p>
+  <p><%=title%>:</p>
 
   <form 
   <% if (request==='new') { %>
@@ -36,9 +36,9 @@
     
   <div class="form-group">
     <label for="narrative-area">Enter Narrative</label>
-    <textarea class="form-control" id="narrative-area" name="text" rows="3"><%= !!narrative ? narrative.text : `` %></textarea>
+    <textarea class="form-control" id="narrative-area" name="text" rows="4"><%= !!narrative ? narrative.text : `` %></textarea>
   </div>
-    <button type="submit" id = "student-submit"><%=request===`new` ? `Add Narrative` : `Update Narrative`%></button>
+    <button type="submit" class ="btn btn-primary" id = "student-submit"><%=request===`new` ? `Add Narrative` : `Update Narrative`%></button>
   
   </form>
 </section>
