@@ -87,10 +87,8 @@ async function update(req, res) {
     const updatedCategories = [...req.body.category];
     const tempObject = {};
     for (let i = 0; i < updatedCategories.length; i++) {
-        tempObject[updatedCategories[i]] = [...req.body.subcategory][i];
-    }
-    for (let i = 0; i < updatedCategories.length; i++) {
-      if (tempObject[updatedCategories[i]] ==='None'){
+      tempObject[updatedCategories[i]] = [...req.body.subcategory][i];
+      if (tempObject[updatedCategories[i]] === "None") {
         delete tempObject[updatedCategories[i]];
       }
     }
