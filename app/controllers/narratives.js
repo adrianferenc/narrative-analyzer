@@ -14,11 +14,12 @@ module.exports = {
 async function index(req, res) {
   try {
     const narratives = await Narrative.find({});
-    const students = await Student.find({});;
+    const students = await Student.find({});
     res.render("narratives/index.ejs", {
       narratives,
       students,
       title: "Narratives",
+      navKey: "narratives",
     });
   } catch (err) {
     res.send(err);
@@ -33,6 +34,7 @@ async function newNarrative(req, res) {
       title: "Add a Narrative",
       narrative: "",
       request: "new",
+      navKey: "narratives",
     });
   } catch (err) {
     res.send(err);
@@ -65,6 +67,7 @@ async function revise(req, res) {
       narrative,
       title: "Update Narrative",
       request: "update",
+      navKey: "narratives",
     });
   } catch (err) {
     res.send(err);

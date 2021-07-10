@@ -7,5 +7,5 @@ module.exports = {
 };
 
 function index(req, res) {
-  res.render("results/index.ejs", { title: "Results" });
+  res.render("results/index.ejs", { title: "Results", navKey: "narratives" });
 }

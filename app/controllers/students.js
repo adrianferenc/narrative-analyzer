@@ -27,6 +27,7 @@ async function index(req, res) {
       students,
       studentNarratives,
       title: "Students",
+      navKey: "students",
     });
   } catch (err) {
     res.send(err);
@@ -34,7 +35,10 @@ async function index(req, res) {
 }
 
 function newStudent(req, res) {
-  res.render("students/new.ejs", { title: "Add a Student" });
+  res.render("students/new.ejs", {
+    title: "Add a Student",
+    navKey: "students",
+  });
 }
 
 async function create(req, res) {
@@ -61,6 +65,7 @@ async function show(req, res) {
       narratives,
       categories,
       title: `${student.name}`,
+      navKey: "students",
     });
   } catch (err) {
     res.send(err);

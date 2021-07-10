@@ -14,11 +14,18 @@ module.exports = {
 
 async function index(req, res) {
   const categories = await Category.find({});
-  res.render("categories/index.ejs", { title: "Categories", categories });
+  res.render("categories/index.ejs", {
+    title: "Categories",
+    categories,
+    navKey: "categories",
+  });
 }
 
 function newCategory(req, res) {
-  res.render("categories/new.ejs", { title: "Add a Category" });
+  res.render("categories/new.ejs", {
+    title: "Add a Category",
+    navKey: 'categories',
+  });
 }
 
 async function create(req, res) {
@@ -37,6 +44,7 @@ async function show(req, res) {
       category,
       title: `${category.name}`,
       value: "",
+      navKey: 'categories',
     });
   } catch (err) {
     res.send(err);
@@ -58,6 +66,7 @@ async function addSub(req, res) {
       category,
       title: `${category.name}`,
       value: "",
+      navKey: 'categories',
     });
   } catch (err) {
     res.send(err);
@@ -97,6 +106,7 @@ async function updateSub(req, res) {
       category,
       title: `${category.name}`,
       value: `${req.params.subcategoryId}`,
+      navKey: 'categories',
     });
   } catch (err) {
     res.send(err);

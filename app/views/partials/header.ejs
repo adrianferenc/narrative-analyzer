@@ -27,19 +27,19 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                  <a <%- title ===`Narrative Analyzer`? `class="nav-link active" aria-current="true"` : `class="nav-link" `%> href="/">Home</a>
+                  <a <%- navKey ===`home`? `class="nav-link active" aria-current="true"` : `class="nav-link" `%> href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a <%- title ===`Results`? `class="nav-link active" aria-current="true"` : `class="nav-link" `%> href="/results">Results</a>
+                  <a <%- navKey ===`results`? `class="nav-link active" aria-current="true"` : `class="nav-link" `%> href="/results">Results</a>
 
                 </li>
 
                 <li class="nav-item">
-                  <a <%- title ===`Categories`? `class="nav-link active" aria-current="true"` : `class="nav-link" `%> href="/categories">Categories</a>
+                  <a <%- navKey ===`categories`? `class="nav-link active" aria-current="true"` : `class="nav-link" `%> href="/categories">Categories</a>
               </li>
 
                 <li class="nav-item dropdown">
-                  <a <%- title ===`Narratives`||title ===`Add a Narrative`? `class="nav-link dropdown-toggle active" aria-current="true"` : `class="nav-link dropdown-toggle"`%> href="#" id="narrative-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <a <%- navKey ===`narratives`? `class="nav-link dropdown-toggle active" aria-current="true"` : `class="nav-link dropdown-toggle"`%> href="#" id="narrative-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Narratives
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="narrative-dropdown">
@@ -49,7 +49,7 @@
                 </li>
 
                 <li class="nav-item dropdown">
-                  <a <%- title ===`Students`||title ===`Add a Student`? `class="nav-link dropdown-toggle active" aria-current="true"` : `class="nav-link dropdown-toggle"`%> href="#" id="student-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <a <%- navKey ===`students`? `class="nav-link dropdown-toggle active" aria-current="true"` : `class="nav-link dropdown-toggle"`%> href="#" id="student-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Students
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="student-dropdown">
@@ -66,7 +66,7 @@
 
               <ul class="navbar-nav">
                 <li class="nav-item">
-                  <a <%- title ===`Profile` ? `class="nav-link active" aria-current="true"` : `class="nav-link" `%> href="/profile">Profile</a>
+                  <a <%- navKey ===`profile` ? `class="nav-link active" aria-current="true"` : `class="nav-link" `%> href="/profile">Profile</a>
                 </li>
             </div>
           </div>
