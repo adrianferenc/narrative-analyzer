@@ -100,17 +100,20 @@
             <% }) %>
           </ul>
           <form action="students/<%-student._id%>" method="GET">
-            <button type="submit" class="btn btn-secondary">Update</button>
+            <button type="submit" class="btn btn-secondary">Update <%=student.name%></button>
             </form>
           
         </div>
       </div>
     </div>
   </div>
-  <% }) %> <% } %>
+  <% }) %> 
+  <% } %>
+  <div class="d-flex justify-content-center mt-4">
   <form action="/students/new">
     <button class="btn btn-primary">Add a student</button>
   </form>
+</div>
 </section>
 <!-- Footer-->
 <%- include('../partials/footer') %>

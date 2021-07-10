@@ -11,76 +11,95 @@
 
   <div>
     <h3>
-      <a
-          style="text-decoration: none; color: black"
-          href="/categories"
-          >Categories</a
-        >
-      </h3>
+      <a style="text-decoration: none; color: black" href="/categories"
+        >Categories</a
+      >
+      <form action="/categories" method="GET">
+        <button class="btn btn-primary" type="submit">Edit Categories</button>
+      </form>
+    </h3>
     <ul class="list-group">
       <% categories.forEach(category => { %>
-
-      <li class="list-group-item"><%=category.name%>: 
-        <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-          <option selected>None</option>
+        <form action="/students/<%-student._id%>/?_method=PUT" method="POST">
+          <input hidden name = "category" value = "<%-category.name%>"">
+      <li  class="list-group-item">
+        <%=category.name%>:
+        <select
+          class="form-select form-select-sm"
+          aria-label=".form-select-sm example"
+          name = "subcategory"
+        >
+        
+          <option <%-student.categories[category.name] ?  '' : 'selected'%>>None</option>
           <% category.subcategories.forEach(subcategory => { %>
-            <option value="<%-subcategory%>"><%=subcategory%></option> 
+          <option <%-student.categories[category.name] && student.categories[category.name]===subcategory ?  'selected' : ''%>><%=subcategory%></option>
           <% }) %>
         </select>
-
-  </li>
-  <% }) %>
+      </li>
+      <% }) %>
     </ul>
+    <div class="d-flex justify-content-center">
+      
+        <button class="btn btn-primary" type="submit">
+          Update <%=student.name%>'s Categories
+        </button>
+      </form>
+    </div>
   </div>
-  
-
 
   <div>
-  <h3>
-    <a
-          style="text-decoration: none; color: black"
-          href="/narratives"
-          >Narratives</a
+    <h3>
+      <a style="text-decoration: none; color: black" href="/narratives"
+        >Narratives</a
+      >
+    </h3>
+    <ul class="list-group">
+      <% narratives.forEach(narrative => { %>
+      <li class="list-group-item">
+        <%=narrative.text%>
+        <div
+          class="btn-toolbar"
+          role="toolbar"
+          aria-label="Toolbar with button groups"
         >
-  </h3>
-  <ul class="list-group">
-    <% narratives.forEach(narrative => { %>
-    <li class="list-group-item"><%=narrative.text%>
-      <div
-      class="btn-toolbar"
-      role="toolbar"
-      aria-label="Toolbar with button groups"
-    >
-      <div class="btn-group me-2" role="group" aria-label="First group">
-        <form action="/narratives/<%-narrative._id%>" method="get">
-          <button type="submit" class="btn btn-primary">Update Narrative</button>
-        </form>
-      </div>
-      <div class="btn-group me-2" role="group" aria-label="Second group">
-        <form
-          action="/narratives/<%-narrative._id%>?_method=DELETE"
-          method="POST"
-        >
-          <button type="submit" class="btn btn-secondary">Delete Narrative</button>
-        </form>
-      </div>
-      </div>
-    </li>
-    <% }) %>
-    <li > 
-      <div class="d-flex justify-content-center">
-      <form action = "/narratives/new" method="GET">
-      <button class="btn btn-primary" type="submit">Add a Narrative</button>
-    </form>
+          <div class="btn-group me-2" role="group" aria-label="First group">
+            <form action="/narratives/<%-narrative._id%>" method="get">
+              <button type="submit" class="btn btn-primary">
+                Update Narrative
+              </button>
+            </form>
+          </div>
+          <div class="btn-group me-2" role="group" aria-label="Second group">
+            <form
+              action="/narratives/<%-narrative._id%>?_method=DELETE"
+              method="POST"
+            >
+              <button type="submit" class="btn btn-secondary">
+                Delete Narrative
+              </button>
+            </form>
+          </div>
+        </div>
+      </li>
+      <% }) %>
+      <li>
+        <div class="d-flex justify-content-center">
+          <form action="/narratives/new" method="GET">
+            <button class="btn btn-primary" type="submit">
+              Add a Narrative
+            </button>
+          </form>
+        </div>
+      </li>
+    </ul>
   </div>
-</li>
-  </ul>
-</div>
-  <div class="btn-toolbar d-flex justify-content-center mt-4" role="toolbar" aria-label="Toolbar with button groups">
-    
-<div class="btn-group me-2" role="group" aria-label="Second group">
-    <form action="/students/<%-student._id%>?_method=DELETE"
-              method="POST">
+  <div
+    class="btn-toolbar d-flex justify-content-center mt-4"
+    role="toolbar"
+    aria-label="Toolbar with button groups"
+  >
+    <div class="btn-group me-2" role="group" aria-label="Second group">
+      <form action="/students/<%-student._id%>?_method=DELETE" method="POST">
         <button
           type="button"
           class="btn btn-danger"
