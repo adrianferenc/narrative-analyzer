@@ -94,6 +94,11 @@
         data-bs-parent="#accordionExample"
       >
         <div class="accordion-body">
+          <div class="d-md-inline">
+          <% for( let category in student.categories ) { %>
+          <%=category%>: <%=student.categories[category]%>
+          <% } %>
+        </div>
           <ul>
             <% studentNarratives[student.name].forEach(narrative => { %>
             <li><%=narrative.text%></li>

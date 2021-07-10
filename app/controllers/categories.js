@@ -66,6 +66,16 @@ async function addSub(req, res) {
 
 async function deleteCategory(req, res) {
   try {
+    const students = await Student.find({});
+    const category = await Category.findById(req.params.id);
+    for (let student of students) {
+      if (category.name in student.categories) {
+        const studentCategories = { ...student.categories };
+        delete studentCategories[category.name];
+        student.categories = await studentCategories;
+        await student.save();
+      }
+    }
     await Category.findByIdAndDelete(req.params.id);
     res.redirect("/categories");
   } catch (err) {
