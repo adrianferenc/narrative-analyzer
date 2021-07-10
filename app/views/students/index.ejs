@@ -84,6 +84,10 @@
                 </div>
               </div>
             </form>
+
+            <form action="students/<%-student._id%>" method="GET">
+              <button type="submit" class="btn btn-sm btn-secondary">Update <%=student.name%></button>
+              </form>
           </div>
         </div>
       </h2>
@@ -104,9 +108,7 @@
             <li><%=narrative.text%></li>
             <% }) %>
           </ul>
-          <form action="students/<%-student._id%>" method="GET">
-            <button type="submit" class="btn btn-secondary">Update <%=student.name%></button>
-            </form>
+          
           
         </div>
       </div>

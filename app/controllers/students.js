@@ -49,7 +49,6 @@ async function create(req, res) {
 async function show(req, res) {
   try {
     const student = await Student.findById(req.params.id);
-    console.log(student);
     const narrativeIds = await Narrative.find({ student: student._id });
     const narratives = [];
     for (let id of narrativeIds) {
