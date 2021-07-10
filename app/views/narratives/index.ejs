@@ -19,9 +19,14 @@
         <a
           style="text-decoration: none; color: black"
           href="students/<%-narrative.student%>"
-          ><%=students[narrative.student]%></a
+          ><%=students[students.findIndex(elt=> ""+elt._id === ""+narrative.student)].name%></a
         >
       </h5>
+      <div class="d-md-inline">
+        <% for( let category in students[students.findIndex(elt=> ""+elt._id === ""+narrative.student)].categories ) { %>
+        <strong><%=category%></strong>: <%=students[students.findIndex(elt=> ""+elt._id === ""+narrative.student)].categories[category]%>
+        <% } %>
+      </div>
       <p class="card-text"><%=narrative.text%></p>
       <div
         class="btn-toolbar"

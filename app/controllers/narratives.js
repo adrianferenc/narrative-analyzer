@@ -14,13 +14,7 @@ module.exports = {
 async function index(req, res) {
   try {
     const narratives = await Narrative.find({});
-    const students = {};
-    for (let narrative of narratives) {
-      if (narrative.student) {
-        const student = await Student.findById(narrative.student);
-        students[student._id] = student.name;
-      }
-    }
+    const students = await Student.find({});;
     res.render("narratives/index.ejs", {
       narratives,
       students,
