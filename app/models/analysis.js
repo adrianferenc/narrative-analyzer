@@ -9,6 +9,7 @@ const AnalysisSchema = new mongoose.Schema(
     sentenceMedian: Number,
     wordMean: Number,
     wordMedian: Number,
+    wordCharmap: Object
   },
   { timestamps: true }
 );

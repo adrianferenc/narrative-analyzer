@@ -128,6 +128,16 @@ async function analyze(req, res) {
                   .sort((a, b) => a - b)[appliedSubcategory.length / 2]) /
               2;
 
+        console.log(appliedSubcategory);
+        let appliedSubcatwordCharmap = {};
+        appliedSubcategory.forEach((result) => {
+          for (let word in result.wordCharmap) {
+            word in appliedSubcatwordCharmap
+              ? (appliedSubcatwordCharmap[word] += result.wordCharmap[word])
+              : (appliedSubcatwordCharmap[word] = result.wordCharmap[word]);
+          }
+        });
+
         await Analysis.create({
           dimensions: dimensions.join("&"),
           subcategories: combination,
@@ -135,9 +145,8 @@ async function analyze(req, res) {
           sentenceMedian: appliedSubcatSentenceMedian,
           wordMean: appliedSubcatWordMean,
           wordMedian: appliedSubcatWordMedian,
+          wordCharmap: appliedSubcatwordCharmap,
         });
-      } else {
-        //console.log("nope");
       }
     }
 
@@ -148,12 +157,19 @@ async function analyze(req, res) {
 }
 
 async function show(req, res) {
-  const analyses = await Analysis.find({dimensions: req.params.id});
+  const analyses = await Analysis.find({ dimensions: req.params.id });
+  console.log(analyses);
+  let wordList = [];
+  analyses.forEach((analysis) => {
+    wordList = wordList.concat(Object.keys(analysis.wordCharmap));
+  });
+  wordList = [...new Set(wordList)].sort();
+
   res.render("results/show.ejs", {
     title: "Results",
     navKey: "Results",
-    wordList: {},
-    analyses
+    wordList,
+    analyses,
   });
 }
 

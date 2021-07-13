@@ -9,29 +9,95 @@
 <section class="page-section" id="results">
   <p>These are the results</p>
 
-  <table>
-    
+  <table class="table">
     <tr>
-      
-      <% analyses.forEach(analysis => { %>
-        <th>      
-          <% analysis.subcategories.forEach((subcategory,idx) => { %>
-          
-            <%= analysis.dimensions.split('\&')[idx]%>: <%=subcategory%>
-          
-        <% }) %>
+      <thead>
+        <th>Dimensions of Self</th>
+        <% analyses.forEach(analysis => { %>
+        <th>
+          <% analysis.subcategories.forEach((subcategory,idx) => { %> <%=
+          analysis.dimensions.split('\&')[idx]%>: <%=subcategory%> <% }) %>
         </th>
-        <% }) %>
-      
-    </tr> 
 
-    <tr>
-    
+        <% }) %>
+      </thead>
     </tr>
-    
-  
+
+    <tbody>
+      <tr>
+        <td>Sentence Count Mean</td>
+        
+          <% analyses.forEach(analysis => { %>
+            <td>
+          <%= analysis.sentenceMean%> 
+        </td><% })%>
+      </tr>
+
+      <tr>
+        <td>Sentence Count Median</td>
+        
+          <% analyses.forEach(analysis => { %> 
+            <td>
+              <%= analysis.sentenceMedian%> 
+            </td>
+            <%}) %>
+      </tr>
+
+      <tr>
+        <td>Word Count Mean</td>
+        
+          <% analyses.forEach(analysis => { %> 
+            <td>
+            <%= analysis.wordMean%> 
+          </td>
+            <% }) %>
+      </tr>
+
+      <tr>
+        <td>Word Count Median</td>
+        
+          <% analyses.forEach(analysis => { %> 
+          <td><%= analysis.wordMedian%> 
+          </td>
+          <% })%>
+      </tr>
+    </tbody>
   </table>
 
+
+
+  <table class="table">
+    <tr>
+      <thead>
+        <th>Dimensions of Self</th>
+        <% analyses.forEach(analysis => { %>
+        <th>
+          <% analysis.subcategories.forEach((subcategory,idx) => { %> <%=
+          analysis.dimensions.split('\&')[idx]%>: <%=subcategory%> <% }) %>
+        </th>
+
+        <% }) %>
+      </thead>
+    </tr>
+
+    <% wordList.forEach(word => { %>
+     <tr>
+       <td>
+         <%=word%>
+       </td>
+     
+
+     <% analyses.forEach(analysis => { %>
+      
+        <td>
+         <%=(word in analysis.wordCharmap) ? analysis.wordCharmap[word]: 0%>
+        </td>
+      
+     <% }) %>
+    </tr>
+    <% }) %>
+
+  </table>
 </section>
 <!-- Footer-->
 <%- include('../partials/footer') %>
