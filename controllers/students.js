@@ -43,11 +43,17 @@ function newStudent(req, res) {
 }
 
 async function create(req, res) {
+  console.log('test')
   try {
     const newStudent = await Student.create(req.body);
     res.redirect(`/students/${newStudent._id}`);
   } catch (err) {
-    res.send(err);
+    if (req.body.name==='' || req.body.grade ==='Enter a grade'){
+      res.redirect("/students/new");
+    } else{
+      res.send(err);
+    }
+    
   }
 }
 

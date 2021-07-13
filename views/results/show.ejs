@@ -124,7 +124,7 @@
 
                 <td>
                   <%=(word in analysis.wordCharmap) ?
-                  analysis.wordCharmap[word]/analyses.length: 0%>
+                  Math.round((analysis.wordCharmap[word]/analyses.length + Number.EPSILON) * 100) / 100: 0%>
                 </td>
 
                 <% }) %>
