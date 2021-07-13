@@ -90,7 +90,7 @@
      <% analyses.forEach(analysis => { %>
       
         <td>
-         <%=(word in analysis.wordCharmap) ? analysis.wordCharmap[word]: 0%>
+         <%=(word in analysis.wordCharmap) ? analysis.wordCharmap[word]/analyses.length: 0%>
         </td>
       
      <% }) %>

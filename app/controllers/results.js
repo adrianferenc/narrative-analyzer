@@ -33,7 +33,7 @@ async function analyze(req, res) {
 
       const narrativeTextStripped = (narrativeText + ".")
         .replace(/\.{3}|,||;|\(|\)|"|'|`/gm, ``) //removes commas, colons, semicolons, parentheses, quotes, and ellipses
-        .replace(/\s+/gm, ` `) // reduces all multiple spaces to a single space
+        .replace(/\s+|-/gm, ` `) // reduces all multiple spaces to a single space
         .replace(/[\.!?]+/gm, `.`) //changes ! and ? to .
         .toLowerCase();
 
