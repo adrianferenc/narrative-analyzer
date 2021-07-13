@@ -1,6 +1,7 @@
 const Student = require("../models/student");
 const Narrative = require("../models/narrative");
 const Category = require("../models/category");
+const Result = require("../models/result");
 
 module.exports = {
   index,
@@ -78,6 +79,7 @@ async function deleteStudent(req, res) {
     for (let i = 0; i < student.narratives.length; i++) {
       await Narrative.findByIdAndDelete(student.narratives[i]);
     }
+    await Result.findOneAndDelete({ studentName: student.name });
     await Student.findByIdAndDelete(req.params.id);
     res.redirect("/students");
   } catch (err) {

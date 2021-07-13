@@ -24,7 +24,7 @@
               class="accordion-button collapsed"
               type="button"
               data-bs-toggle="collapse"
-              data-bs-target="#collapse<%=student._id%>"
+              data-bs-target="#collapse<%-student._id%>"
               aria-expanded="false"
               aria-controls="collapse"
             >
@@ -92,7 +92,7 @@
         </div>
       </h2>
       <div
-        id="collapse<%=student._id%>"
+        id="collapse<%-student._id%>"
         class="accordion-collapse collapse"
         aria-labelledby="headingTwo"
         data-bs-parent="#accordionExample"
