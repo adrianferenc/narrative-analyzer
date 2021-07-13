@@ -1,0 +1,37 @@
+<%- include('../partials/header') %>
+<!-- Masthead-->
+<header class="masthead">
+  <div class="container">
+    <div class="masthead-subheading">Results</div>
+  </div>
+</header>
+<!-- Services-->
+<section class="page-section" id="results">
+  <p>These are the results</p>
+
+  <table>
+    
+    <tr>
+      
+      <% analyses.forEach(analysis => { %>
+        <th>      
+          <% analysis.subcategories.forEach((subcategory,idx) => { %>
+          
+            <%= analysis.dimensions.split('\&')[idx]%>: <%=subcategory%>
+          
+        <% }) %>
+        </th>
+        <% }) %>
+      
+    </tr> 
+
+    <tr>
+    
+    </tr>
+    
+  
+  </table>
+
+</section>
+<!-- Footer-->
+<%- include('../partials/footer') %>

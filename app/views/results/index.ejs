@@ -1,14 +1,32 @@
 <%- include('../partials/header') %>
-        <!-- Masthead-->
-        <header class="masthead">
-            <div class="container">
-                <div class="masthead-subheading">Results</div>
-
-            </div>
-        </header>
-        <!-- Services-->
-        <section class="page-section" id="results">
-            <p>These are the results</p>
-        </section>
-        <!-- Footer-->
+<!-- Masthead-->
+<header class="masthead">
+  <div class="container">
+    <div class="masthead-subheading">Results</div>
+  </div>
+</header>
+<!-- Services-->
+<section class="page-section" id="results">
+  <p>Select the categories you would like to have compared:</p>
+  <form action="/results/" method="POST">
+    <div>
+      <% categories.forEach((category,idx) => { %>
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="inlineCheckbox<%-idx%>"
+          name="dimension-<%-idx%>"
+          value="<%-category.name%>"
+        />
+        <label class="form-check-label" for="inlineCheckbox<%-idx%>"
+          ><%=`${category.name}`%></label
+        >
+      </div>
+      <% }) %>
+    </div>
+    <button type="submit" class="btn btn-primary">View Results</button>
+  </form>
+</section>
+<!-- Footer-->
 <%- include('../partials/footer') %>
