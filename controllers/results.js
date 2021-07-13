@@ -20,7 +20,6 @@ async function index(req, res) {
 }
 
 async function analyze(req, res) {
-  console.log(req.body);
   try {
     const narratives = await Narrative.find({});
     for (let narrative of narratives) {
@@ -128,7 +127,6 @@ async function analyze(req, res) {
                   .sort((a, b) => a - b)[appliedSubcategory.length / 2]) /
               2;
 
-        console.log(appliedSubcategory);
         let appliedSubcatwordCharmap = {};
         appliedSubcategory.forEach((result) => {
           for (let word in result.wordCharmap) {
@@ -158,7 +156,6 @@ async function analyze(req, res) {
 
 async function show(req, res) {
   const analyses = await Analysis.find({ dimensions: req.params.id });
-  console.log(analyses);
   let wordList = [];
   analyses.forEach((analysis) => {
     wordList = wordList.concat(Object.keys(analysis.wordCharmap));

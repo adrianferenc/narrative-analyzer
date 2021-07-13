@@ -7,97 +7,135 @@
 </header>
 <!-- Services-->
 <section class="page-section" id="results">
-  <p>These are the results</p>
+  <div>
+    <div class="accordion" id="accordionExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingTwo">
+          <button
+            class="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseTwo"
+            aria-expanded="false"
+            aria-controls="collapseTwo"
+          >
+            Average Word and Sentence Counts
+          </button>
+        </h2>
+        <div
+          id="collapseTwo"
+          class="accordion-collapse collapse"
+          aria-labelledby="headingTwo"
+          data-bs-parent="#accordionExample"
+        >
+          <div class="accordion-body">
+            <table class="table">
+              <tr>
+                <thead>
+                  <th>Dimensions of Self</th>
+                  <% analyses.forEach(analysis => { %>
+                  <th>
+                    <% analysis.subcategories.forEach((subcategory,idx) => { %>
+                    <%= analysis.dimensions.split('\&')[idx]%>: <%=subcategory%>
+                    <% }) %>
+                  </th>
 
-  <table class="table">
-    <tr>
-      <thead>
-        <th>Dimensions of Self</th>
-        <% analyses.forEach(analysis => { %>
-        <th>
-          <% analysis.subcategories.forEach((subcategory,idx) => { %> <%=
-          analysis.dimensions.split('\&')[idx]%>: <%=subcategory%> <% }) %>
-        </th>
+                  <% }) %>
+                </thead>
+              </tr>
 
-        <% }) %>
-      </thead>
-    </tr>
+              <tbody>
+                <tr>
+                  <td>Sentence Count Mean</td>
 
-    <tbody>
-      <tr>
-        <td>Sentence Count Mean</td>
-        
-          <% analyses.forEach(analysis => { %>
-            <td>
-          <%= analysis.sentenceMean%> 
-        </td><% })%>
-      </tr>
+                  <% analyses.forEach(analysis => { %>
+                  <td><%= analysis.sentenceMean%></td>
+                  <% })%>
+                </tr>
 
-      <tr>
-        <td>Sentence Count Median</td>
-        
-          <% analyses.forEach(analysis => { %> 
-            <td>
-              <%= analysis.sentenceMedian%> 
-            </td>
-            <%}) %>
-      </tr>
+                <tr>
+                  <td>Sentence Count Median</td>
 
-      <tr>
-        <td>Word Count Mean</td>
-        
-          <% analyses.forEach(analysis => { %> 
-            <td>
-            <%= analysis.wordMean%> 
-          </td>
-            <% }) %>
-      </tr>
+                  <% analyses.forEach(analysis => { %>
+                  <td><%= analysis.sentenceMedian%></td>
+                  <%}) %>
+                </tr>
 
-      <tr>
-        <td>Word Count Median</td>
-        
-          <% analyses.forEach(analysis => { %> 
-          <td><%= analysis.wordMedian%> 
-          </td>
-          <% })%>
-      </tr>
-    </tbody>
-  </table>
+                <tr>
+                  <td>Word Count Mean</td>
 
+                  <% analyses.forEach(analysis => { %>
+                  <td><%= analysis.wordMean%></td>
+                  <% }) %>
+                </tr>
 
-Word Counts MEAN (not median)
-  <table class="table">
-    <tr>
-      <thead>
-        <th>Dimensions of Self</th>
-        <% analyses.forEach(analysis => { %>
-        <th>
-          <% analysis.subcategories.forEach((subcategory,idx) => { %> <%=
-          analysis.dimensions.split('\&')[idx]%>: <%=subcategory%> <% }) %>
-        </th>
+                <tr>
+                  <td>Word Count Median</td>
 
-        <% }) %>
-      </thead>
-    </tr>
+                  <% analyses.forEach(analysis => { %>
+                  <td><%= analysis.wordMedian%></td>
+                  <% })%>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingThree">
+          <button
+            class="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseThree"
+            aria-expanded="false"
+            aria-controls="collapseThree"
+          >
+            Word Distribution Mean
+          </button>
+        </h2>
+        <div
+          id="collapseThree"
+          class="accordion-collapse collapse"
+          aria-labelledby="headingThree"
+          data-bs-parent="#accordionExample"
+        >
+          <div class="accordion-body">
+            <table class="table">
+              <tr>
+                <thead>
+                  <th>Dimensions of Self</th>
+                  <% analyses.forEach(analysis => { %>
+                  <th>
+                    <% analysis.subcategories.forEach((subcategory,idx) => { %>
+                    <%= analysis.dimensions.split('\&')[idx]%>: <%=subcategory%>
+                    <% }) %>
+                  </th>
 
-    <% wordList.forEach(word => { %>
-     <tr>
-       <td>
-         <%=word%>
-       </td>
-     
+                  <% }) %>
+                </thead>
+              </tr>
 
-     <% analyses.forEach(analysis => { %>
-      
-        <td>
-         <%=(word in analysis.wordCharmap) ? analysis.wordCharmap[word]/analyses.length: 0%>
-        </td>
-      
-     <% }) %>
-    </tr>
-    <% }) %>
+              <% wordList.forEach(word => { %>
+              <tr>
+                <td><%=word%></td>
 
-  </table>
+                <% analyses.forEach(analysis => { %>
+
+                <td>
+                  <%=(word in analysis.wordCharmap) ?
+                  analysis.wordCharmap[word]/analyses.length: 0%>
+                </td>
+
+                <% }) %>
+              </tr>
+              <% }) %>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 <!-- Footer-->
 <%- include('../partials/footer') %>
