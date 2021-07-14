@@ -8,12 +8,12 @@
 <!-- Services-->
 <section class="page-section" id="students">
   <div class="container">
-  <h4>This is <%=student.name%></h4>
+  <h4 class="d-flex justify-content-center">This is <%=student.name%></h4>
 
     <div class="container d-md-inline">
-    <strong>Grade:
+    <h5>Grade</h5>
     <form action="/grade/<%-student._id%>/?_method=PUT" method="POST">
-    <select class="form-select w-25" aria-label="Grade" name = "grade">
+    <select class="form-select w-25 my-3" aria-label="Grade" name = "grade">
       <option <%-!student.grade|| student.grade === "Enter a grade"? '':'selected' %>selected value="Enter a grade">Select a grade</option>
       <option  value="A">A</option>
       <option <%-student.grade ==="A-" ? 'selected': ''%> value="A-">A-</option>
@@ -29,9 +29,11 @@
       <option <%-student.grade ==="F" ? 'selected':'' %> value="F">F</option>
     </select>
 
+    <div class="d-flex justify-content-center">
     <button class="btn btn-primary" type="submit">
       Update <%=student.name%>'s Grade
     </button>
+  </div>
   </form> 
   </div>
 
@@ -41,26 +43,29 @@
       <a style="text-decoration: none; color: black" href="/categories"
         >Categories</a
       >
+    </h5>
       <form action="/categories" method="GET">
         <button class="btn btn-primary" type="submit">Edit Categories</button>
       </form>
-    </h5>
-    <ul class="list-group">
+    
+    <ul >
       <% categories.forEach(category => { %>
         <form action="/students/<%-student._id%>/?_method=PUT" method="POST">
           <input hidden name = "category" value = "<%-category.name%>"">
-      <li  class="list-group-item">
-        <%=category.name%>:
+      <li class="my-3">
+        <label for="<%-category.name%>"><%=category.name%>:</label>
         <select
-          class="form-select form-select-sm"
+          class="form-select form-select-sm w-25 container d-md-inline-block"
           aria-label=".form-select-sm example"
           name = "subcategory"
+          id="<%-category.name%>"
         >
           <option <%-student.categories[category.name] ?  '' : 'selected'%>>None</option>
           <% category.subcategories.forEach(subcategory => { %>
           <option <%-student.categories[category.name] && student.categories[category.name]===subcategory ?  'selected' : ''%>><%=subcategory%></option>
           <% }) %>
         </select>
+
       </li>
       <% }) %>
     </ul>
@@ -74,23 +79,27 @@
   </div>
 
   <div>
-    <h5>
+    
+    <h5 class="mb-3">
       <a style="text-decoration: none; color: black" href="/narratives"
         >Narratives</a
       >
     </h5>
-    <ul class="list-group">
+    <div class="mb-4">
+    <ul class="list-group list-group-flush">
       <% narratives.forEach(narrative => { %>
       <li class="list-group-item">
-        <p><%=narrative.text%></p>
+
+        <p class="mb-3"><%=narrative.text%></p>
+      
         <div
-          class="btn-toolbar"
+          class="btn-toolbar d-flex justify-content-center"
           role="toolbar"
           aria-label="Toolbar with button groups"
         >
           <div class="btn-group me-2" role="group" aria-label="First group">
             <form action="/narratives/<%-narrative._id%>" method="get">
-              <button type="submit" class="btn btn-primary">
+              <button type="submit" class="btn btn-secondary btn-sm">
                 Update Narrative
               </button>
             </form>
@@ -100,15 +109,16 @@
               action="/narratives/<%-narrative._id%>?_method=DELETE"
               method="POST"
             >
-              <button type="submit" class="btn btn-secondary">
+              <button type="submit" class="btn btn-danger btn-sm">
                 Delete Narrative
               </button>
             </form>
           </div>
         </div>
-      </li>
+      
       <% }) %>
-      <li>
+    </ul>
+  </div>
         <div class="d-flex justify-content-center">
           <form action="/narratives/new" method="GET">
             <button class="btn btn-primary" type="submit">
@@ -116,8 +126,8 @@
             </button>
           </form>
         </div>
-      </li>
-    </ul>
+      
+    
   </div>
   <div
     class="btn-toolbar d-flex justify-content-center mt-4"
@@ -168,7 +178,7 @@
                 >
                   Close
                 </button>
-                <button type="submit" class="btn btn-danger">
+                <button type="submit" class="btn btn-danger btn-lg">
                   Delete <%=student.name%>
                 </button>
               </div>
@@ -178,6 +188,7 @@
       </form>
     </div>
   </div>
+</li>
   </div>
 </section>
 <!-- Footer-->

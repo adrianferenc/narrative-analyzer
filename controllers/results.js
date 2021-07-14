@@ -80,7 +80,7 @@ async function analyze(req, res) {
       let particularCategory = await Category.find(particularQuery);
       arraysOfapplicableSubcategories.push(particularCategory[0].subcategories);
     }
-    const allPossibleCombinations = cartesian(
+    const allPossibleCombinations = setProduct(
       ...arraysOfapplicableSubcategories
     );
 
@@ -182,7 +182,10 @@ async function show(req, res) {
   });
 }
 
-function cartesian(...args) {
+
+//Auxillary Functions
+
+function setProduct(...args) {
   let r = [],
     max = args.length - 1;
   function helper(arr, i) {

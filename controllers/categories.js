@@ -4,7 +4,6 @@ const Category = require("../models/category");
 
 module.exports = {
   index,
-  new: newCategory,
   create,
   show,
   addSub,
@@ -21,19 +20,17 @@ async function index(req, res) {
   });
 }
 
-function newCategory(req, res) {
-  res.render("categories/new.ejs", {
-    title: "Add a Category",
-    navKey: 'categories',
-  });
-}
-
 async function create(req, res) {
+  console.log(req.body);
   try {
     const newCategory = await Category.create(req.body);
     res.redirect(`/categories/${newCategory._id}`);
   } catch (err) {
-    res.send(err);
+    if (req.body.name === "") {
+      res.redirect("/categories");
+    } else {
+      res.send(err);
+    }
   }
 }
 
@@ -44,7 +41,7 @@ async function show(req, res) {
       category,
       title: `${category.name}`,
       value: "",
-      navKey: 'categories',
+      navKey: "categories",
     });
   } catch (err) {
     res.send(err);
@@ -66,7 +63,7 @@ async function addSub(req, res) {
       category,
       title: `${category.name}`,
       value: "",
-      navKey: 'categories',
+      navKey: "categories",
     });
   } catch (err) {
     res.send(err);
@@ -106,7 +103,7 @@ async function updateSub(req, res) {
       category,
       title: `${category.name}`,
       value: `${req.params.subcategoryId}`,
-      navKey: 'categories',
+      navKey: "categories",
     });
   } catch (err) {
     res.send(err);

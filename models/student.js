@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const studentSchema = new mongoose.Schema(
   {
-    name: { type: String, required: true },
+    name: { type: String, required: true, unique: true },
     narratives: [{ type: Schema.Types.ObjectId, ref: "Narrative" }],
     categories: { type: {}, default: {} },
     grade: {

@@ -3,7 +3,6 @@ const router = express.Router();
 const categoriesCtrl = require("../controllers/categories");
 
 router.get("/categories", categoriesCtrl.index);
-router.get("/categories/new", categoriesCtrl.new);
 router.post("/categories", categoriesCtrl.create);
 router.get("/categories/:id", categoriesCtrl.show);
 router.delete("/categories/:id", categoriesCtrl.delete);
