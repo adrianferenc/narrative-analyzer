@@ -9,6 +9,11 @@
 <section class="page-section" id="students">
   <p>This is <%=student.name%></p>
 
+    <div class="card">
+    <strong>Grade:</strong> <%=student.grade%>
+  </div>
+
+  
   <div>
     <h3>
       <a style="text-decoration: none; color: black" href="/categories"
@@ -29,7 +34,6 @@
           aria-label=".form-select-sm example"
           name = "subcategory"
         >
-        
           <option <%-student.categories[category.name] ?  '' : 'selected'%>>None</option>
           <% category.subcategories.forEach(subcategory => { %>
           <option <%-student.categories[category.name] && student.categories[category.name]===subcategory ?  'selected' : ''%>><%=subcategory%></option>

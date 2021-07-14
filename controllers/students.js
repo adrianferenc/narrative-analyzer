@@ -43,17 +43,15 @@ function newStudent(req, res) {
 }
 
 async function create(req, res) {
-  console.log('test')
   try {
     const newStudent = await Student.create(req.body);
     res.redirect(`/students/${newStudent._id}`);
   } catch (err) {
-    if (req.body.name==='' || req.body.grade ==='Enter a grade'){
+    if (req.body.name === "" || req.body.grade === "Enter a grade") {
       res.redirect("/students/new");
-    } else{
+    } else {
       res.send(err);
     }
-    
   }
 }
 
@@ -96,10 +94,14 @@ async function deleteStudent(req, res) {
 async function update(req, res) {
   try {
     const student = await Student.findById(req.params.id);
-    const updatedCategories = [...req.body.category];
+    const updatedCategories = Array.isArray(req.body.category)
+      ? [...req.body.category]
+      : [req.body.category];
     const tempObject = {};
     for (let i = 0; i < updatedCategories.length; i++) {
-      tempObject[updatedCategories[i]] = [...req.body.subcategory][i];
+      tempObject[updatedCategories[i]] = Array.isArray(req.body.subcategory)
+        ? [...req.body.subcategory][i]
+        : [req.body.subcategory][i];
       if (tempObject[updatedCategories[i]] === "None") {
         delete tempObject[updatedCategories[i]];
       }
