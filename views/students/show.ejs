@@ -8,14 +8,13 @@
 <!-- Services-->
 <section class="page-section" id="students">
   <div class="container">
-  <h4 class="d-flex justify-content-center">This is <%=student.name%></h4>
 
     <div class="container d-md-inline">
     <h5>Grade</h5>
     <form action="/grade/<%-student._id%>/?_method=PUT" method="POST">
     <select class="form-select w-25 my-3" aria-label="Grade" name = "grade">
       <option <%-!student.grade|| student.grade === "Enter a grade"? '':'selected' %>selected value="Enter a grade">Select a grade</option>
-      <option  value="A">A</option>
+      <option <%-student.grade ==="A" ? 'selected': ''%> value="A">A</option>
       <option <%-student.grade ==="A-" ? 'selected': ''%> value="A-">A-</option>
       <option <%-student.grade ==="B+" ? 'selected':'' %> value="B+">B+</option>
       <option <%-student.grade ==="B" ? 'selected':'' %> value="B">B</option>

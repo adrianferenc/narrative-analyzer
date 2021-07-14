@@ -8,69 +8,64 @@
 <!-- Services-->
 <section class="page-section" id="students">
   <div class="container">
-  <h3 class="d-flex justify-content-center"><%=title%></h3>
+    <h5 class = "d-flex justify-content-center">List of <%=title%>s</h5>
 
-  <h5>List of <%=title%>s</h5>
-
-  <ul class="list-group list-group-flush">
-    <% category.subcategories.forEach(subcategory => { %>
-    <li class="list-group-item">
-      <div class="input-group d-flex justify-content-around"> 
-        <div>
-          <%=subcategory%>
+    <ul class="list-group list-group-flush">
+      <% category.subcategories.forEach(subcategory => { %>
+      <li class="list-group-item">
+        <div class="input-group d-flex justify-content-around">
+          <div><%=subcategory%></div>
+          <form
+            action="/categories/<%-category._id%>/subcategories/<%-subcategory%>"
+            method="GET"
+          >
+            <button class="btn btn-sm btn-secondary" type="submit">
+              Update
+            </button>
+          </form>
         </div>
-        <form action="/categories/<%-category._id%>/subcategories/<%-subcategory%>" method="GET">
-          <button class = "btn btn-sm btn-secondary" type ="submit">Update</button>
-        </form>
-      
-      </div>
+      </li>
+      <% }) %>
 
-    </li>
-    <% }) %>
-
-    <li class="list-group-item d-flex justify-content-center">
-      <form action="/categories/<%-category._id%>/subcategories" method="POST">
-        <input
-          type="text"
-          name="newSubcategory"
-          <%- 
-          value!=='' ?
-          `value = ${value}` :
-          placeholder="Add a new subcategory"
-          %>
-        />
-        <div class="btn-group me-3">
-          <button class="btn btn-primary" type="submit">
-            Add a <%=title%>
-          </button>
-        </div>
-      </form>
-    </li>
-  </ul>
-
-  <div class="d-flex justify-content-center mt-4">
-    <div class="btn-toolbar">
-      <div class="btn-group me-3">
-        <form action="/categories?_method=GET" method="GET">
-          <button class="btn btn-secondary" type="submit">
-            Back to Categories
-          </button>
-        </form>
-      </div>
-
-      <div class="btn-group me-3">
+      <li class="list-group-item d-flex justify-content-center">
         <form
-          action="/categories/<%-category._id%>?_method=DELETE"
+          action="/categories/<%-category._id%>/subcategories"
           method="POST"
         >
-          <button class="btn btn-danger" type="submit">
-            Delete <%=title%>
-          </button>
+          <input type="text" name="newSubcategory" <%- value!=='' ? `value =
+          ${value}` : placeholder="Add a new subcategory" %> />
+          <div class="btn-group me-3">
+            <button class="btn btn-primary" type="submit">
+              Add a <%=title%>
+            </button>
+          </div>
         </form>
+      </li>
+    </ul>
+
+    <div class="d-flex justify-content-center mt-4">
+      <div class="btn-toolbar">
+        <div class="btn-group me-3">
+          <form action="/categories?_method=GET" method="GET">
+            <button class="btn btn-secondary" type="submit">
+              Back to Categories
+            </button>
+          </form>
+        </div>
+
+        <div class="btn-group me-3">
+          <form
+            action="/categories/<%-category._id%>?_method=DELETE"
+            method="POST"
+          >
+            <button class="btn btn-danger" type="submit">
+              Delete <%=title%>
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
 </section>
 <!-- Footer-->
 <%- include('../partials/footer') %>
