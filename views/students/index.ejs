@@ -9,11 +9,11 @@
 <section class="page-section" id="students">
   <% if (students.length>0) { %>
   <h3>List of Students</h3>
-  <div class="accordion" id="accordionExample">
+  <div class="accordion" id="accordionStudent">
     <% students.forEach(student => { %>
 
     <div class="accordion-item">
-      <h2 class="accordion-header d-grid gap-2 d-md-block">
+      <h2 class="accordion-header">
         <div
           class="btn-toolbar"
           role="toolbar"
@@ -30,6 +30,31 @@
             >
               <%=student.name%>
             </button>
+          </div>
+        </div>
+      </h2>
+      <div
+        id="collapse<%-student._id%>"
+        class="accordion-collapse collapse"
+        aria-labelledby="headingTwo"
+        data-bs-parent="#accordionStudent"
+      >
+        <div class="accordion-body">
+          <div>
+            Grade: <%=student.grade%>
+          </div>
+          
+          <div class="d-md-inline">
+            <% for( let category in student.categories ) { %>
+            <strong><%=category%></strong>: <%=student.categories[category]%> <%
+            } %>
+          </div>
+          <ul>
+            <% studentNarratives[student.name].forEach(narrative => { %>
+            <li><%=narrative.text%></li>
+            <% }) %>
+          </ul>
+
             <form
               action="/students/<%-student._id%>?_method=DELETE"
               method="POST"
@@ -86,41 +111,20 @@
             </form>
 
             <form action="students/<%-student._id%>" method="GET">
-              <button type="submit" class="btn btn-sm btn-secondary">Update <%=student.name%></button>
-              </form>
-          </div>
-        </div>
-      </h2>
-      <div
-        id="collapse<%-student._id%>"
-        class="accordion-collapse collapse"
-        aria-labelledby="headingTwo"
-        data-bs-parent="#accordionExample"
-      >
-        <div class="accordion-body">
-          <div class="d-md-inline">
-          <% for( let category in student.categories ) { %>
-          <strong><%=category%></strong>: <%=student.categories[category]%>
-          <% } %>
-        </div>
-          <ul>
-            <% studentNarratives[student.name].forEach(narrative => { %>
-            <li><%=narrative.text%></li>
-            <% }) %>
-          </ul>
-          
-          
+              <button type="submit" class="btn btn-sm btn-secondary">
+                Update <%=student.name%>
+              </button>
+            </form>
         </div>
       </div>
     </div>
   </div>
-  <% }) %> 
-  <% } %>
+  <% }) %> <% } %>
   <div class="d-flex justify-content-center mt-4">
-  <form action="/students/new">
-    <button class="btn btn-primary">Add a student</button>
-  </form>
-</div>
+    <form action="/students/new">
+      <button class="btn btn-primary">Add a student</button>
+    </form>
+  </div>
 </section>
 <!-- Footer-->
 <%- include('../partials/footer') %>

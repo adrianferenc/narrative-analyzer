@@ -31,7 +31,7 @@ async function analyze(req, res) {
       const assignedCategories = student.categories;
 
       const narrativeTextStripped = (narrativeText + ".")
-        .replace(/\.{3}|\,|\;|\(|\)|\"|\'|\`/gm, '') //removes commas, colons, semicolons, parentheses, quotes, and ellipses
+        .replace(/\.{3}|\,|\;|\(|\)|\"|\`/gm, '') //removes commas, colons, semicolons, parentheses, quotes, and ellipses
         .replace(/\s+|-/gm, ` `) // reduces all multiple spaces or dashes to a single space
         .replace(/[\.!?]+/gm, `.`) //changes ! and ? to .
         .toLowerCase();
@@ -51,7 +51,7 @@ async function analyze(req, res) {
       });
 
       const result = await Result.find({ narrativeId });
-
+      console.log(result);
       const resultObject = {
         studentId,
         studentName,
@@ -62,8 +62,8 @@ async function analyze(req, res) {
         wordCount,
         sentenceCount,
       };
-      if (result.length > 0) {
-        await Result.findByIdAndUpdate(result._id, resultObject);
+      if (result.length > 0) {        
+        await Result.findByIdAndUpdate(result[0]._id, resultObject);
       } else {
         newResult = await Result.create(resultObject);
       }
@@ -152,7 +152,7 @@ async function analyze(req, res) {
         };
 
         if (testAnalysis.length > 0) {
-          await Analysis.findByIdAndUpdate(testAnalysis._id, analysisObject);
+          await Analysis.findByIdAndUpdate(testAnalysis[0]._id, analysisObject);
         } else {
           newAnalysis = await Analysis.create(analysisObject);
         }
