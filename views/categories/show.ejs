@@ -8,21 +8,27 @@
 <!-- Services-->
 <section class="page-section" id="students">
   <div class="container">
-  <h4>This is <%=title%></h4>
+  <h3 class="d-flex justify-content-center"><%=title%></h3>
 
   <h5>List of <%=title%>s</h5>
 
-  <ul>
+  <ul class="list-group list-group-flush">
     <% category.subcategories.forEach(subcategory => { %>
-    <li>
-      <form action="/categories/<%-category._id%>/subcategories/<%-subcategory%>" method="GET">
-      <%=subcategory%>
-      <button class = "btn btn-sm btn-secondary" type ="submit">Update</button>
-    </form>
+    <li class="list-group-item">
+      <div class="input-group d-flex justify-content-around"> 
+        <div>
+          <%=subcategory%>
+        </div>
+        <form action="/categories/<%-category._id%>/subcategories/<%-subcategory%>" method="GET">
+          <button class = "btn btn-sm btn-secondary" type ="submit">Update</button>
+        </form>
+      
+      </div>
+
     </li>
     <% }) %>
 
-    <li>
+    <li class="list-group-item d-flex justify-content-center">
       <form action="/categories/<%-category._id%>/subcategories" method="POST">
         <input
           type="text"

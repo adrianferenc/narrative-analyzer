@@ -8,7 +8,7 @@
 <!-- Services-->
 <section class="page-section" id="narratives">
   <div class="container">
-  <h3><%=title%>:</h3>
+  <h3 class="d-flex justify-content-center mb-3"><%=title%></h3>
 
   <form 
   <% if (request==='new') { %>
@@ -17,11 +17,12 @@
       action="/narratives/<%=narrative._id%>?_method=PUT" method="post" 
   <% } %> 
   >
-  <div class ="col-3">
+  <div class= "d-flex justify-content-center mb-4">
+  <div class ="col-2">
     <select
       name="student"
       id = "student-dropdown"
-      class="form-select form-select-sm"
+      class="form-select form-select-sm  d-flex justify-content-center"
       aria-label=".form-select-sm example"
     >
     <% if (students.length!==1) { %>
@@ -33,14 +34,14 @@
       <% }) %>
     </select>
   </div>
-
+</div>
     
   <div class="form-group">
-    <label for="narrative-area">Enter Narrative</label>
-    <textarea class="form-control" id="narrative-area" name="text" rows="4"><%= !!narrative ? narrative.text : `` %></textarea>
+    <textarea class="form-control mb-4" id="narrative-area" name="text" placeholder = "Enter Narrative" rows="4"><%= !!narrative ? narrative.text : `` %></textarea>
   </div>
+  <div class="d-flex justify-content-center">
     <button type="submit" class ="btn btn-primary" id = "student-submit"><%=request===`new` ? `Add Narrative` : `Update Narrative`%></button>
-  
+  </div>
   </form>
 </div>
 </section>
