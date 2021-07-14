@@ -7,22 +7,43 @@
 </header>
 <!-- Services-->
 <section class="page-section" id="students">
-  <p>This is <%=student.name%></p>
+  <div class="container">
+  <h4>This is <%=student.name%></h4>
 
-    <div class="card">
-    <strong>Grade:</strong> <%=student.grade%>
+    <div class="container d-md-inline">
+    <strong>Grade:
+    <form action="/grade/<%-student._id%>/?_method=PUT" method="POST">
+    <select class="form-select w-25" aria-label="Grade" name = "grade">
+      <option <%-student.grade ==="A" ? 'selected':'' %> value="A">A</option>
+      <option <%-student.grade ==="A-" ? 'selected': ''%> value="A-">A-</option>
+      <option <%-student.grade ==="B+" ? 'selected':'' %> value="B+">B+</option>
+      <option <%-student.grade ==="B" ? 'selected':'' %> value="B">B</option>
+      <option <%-student.grade ==="B-" ? 'selected':'' %> value="B-">B-</option>
+      <option <%-student.grade ==="C+" ? 'selected':'' %> value="C+">C+</option>
+      <option <%-student.grade ==="C" ? 'selected':'' %> value="C">C</option>
+      <option <%-student.grade ==="C-" ? 'selected':'' %> value="C-">C-</option>
+      <option <%-student.grade ==="D+" ? 'selected':'' %> value="D+">D+</option>
+      <option <%-student.grade ==="D" ? 'selected':'' %> value="D">D</option>
+      <option <%-student.grade ==="D-" ? 'selected':'' %> value="D-">D-</option>
+      <option <%-student.grade ==="F" ? 'selected':'' %> value="F">F</option>
+    </select>
+
+    <button class="btn btn-primary" type="submit">
+      Update <%=student.name%>'s Grade
+    </button>
+  </form> 
   </div>
 
   
   <div>
-    <h3>
+    <h5>
       <a style="text-decoration: none; color: black" href="/categories"
         >Categories</a
       >
       <form action="/categories" method="GET">
         <button class="btn btn-primary" type="submit">Edit Categories</button>
       </form>
-    </h3>
+    </h5>
     <ul class="list-group">
       <% categories.forEach(category => { %>
         <form action="/students/<%-student._id%>/?_method=PUT" method="POST">
@@ -52,15 +73,15 @@
   </div>
 
   <div>
-    <h3>
+    <h5>
       <a style="text-decoration: none; color: black" href="/narratives"
         >Narratives</a
       >
-    </h3>
+    </h5>
     <ul class="list-group">
       <% narratives.forEach(narrative => { %>
       <li class="list-group-item">
-        <%=narrative.text%>
+        <p><%=narrative.text%></p>
         <div
           class="btn-toolbar"
           role="toolbar"
@@ -155,6 +176,7 @@
         </div>
       </form>
     </div>
+  </div>
   </div>
 </section>
 <!-- Footer-->

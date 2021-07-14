@@ -7,7 +7,8 @@
 </header>
 <!-- Services-->
 <section class="page-section" id="narratives">
-  <p><%=title%>:</p>
+  <div class="container">
+  <h3><%=title%>:</h3>
 
   <form 
   <% if (request==='new') { %>
@@ -41,6 +42,7 @@
     <button type="submit" class ="btn btn-primary" id = "student-submit"><%=request===`new` ? `Add Narrative` : `Update Narrative`%></button>
   
   </form>
+</div>
 </section>
 
 <%- include('../partials/footer') %>

@@ -7,7 +7,7 @@
 </header>
 <!-- Services-->
 <section class="page-section" id="results">
-  <div>
+  <div class="container">
     <div class="accordion" id="accordionExample">
       <div class="accordion-item">
         <h2 class="accordion-header" id="headingTwo">
@@ -124,7 +124,8 @@
 
                 <td>
                   <%=(word in analysis.wordCharmap) ?
-                  Math.round((analysis.wordCharmap[word]/analyses.length + Number.EPSILON) * 100) / 100: 0%>
+                  Math.round((analysis.wordCharmap[word]/analyses.length +
+                  Number.EPSILON) * 100) / 100: 0%>
                 </td>
 
                 <% }) %>
@@ -133,7 +134,7 @@
             </table>
           </div>
         </div>
-      </div>      
+      </div>
     </div>
   </div>
 </section>

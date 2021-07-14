@@ -8,53 +8,57 @@
 <!-- Services-->
 
 <section class="page-section" id="narratives">
-  <% if (narratives.length>0) { %>
-  <h3>List of Narratives</h3>
+  <div class="container">
+    <% if (narratives.length>0) { %>
+    <h3>List of Narratives</h3>
 
-  <% narratives.forEach(narrative => { %>
+    <% narratives.forEach(narrative => { %>
 
-  <div class="card">
-    <div class="card-body mt-1">
-      <h5 class="card-title">
-        <a
-          style="text-decoration: none; color: black"
-          href="students/<%-narrative.student%>"
-          ><%=students[students.findIndex(elt=> ""+elt._id === ""+narrative.student)].name%></a
-        >
-      </h5>
-      <div class="d-md-inline">
-        <% for( let category in students[students.findIndex(elt=> ""+elt._id === ""+narrative.student)].categories ) { %>
-        <strong><%=category%></strong>: <%=students[students.findIndex(elt=> ""+elt._id === ""+narrative.student)].categories[category]%>
-        <% } %>
-      </div>
-      <p class="card-text"><%=narrative.text%></p>
-      <div
-        class="btn-toolbar"
-        role="toolbar"
-        aria-label="Toolbar with button groups"
-      >
-        <div class="btn-group me-2" role="group" aria-label="First group">
-          <form action="/narratives/<%-narrative._id%>" method="get">
-            <button type="submit" class="btn btn-primary">Update</button>
-          </form>
-        </div>
-        <div class="btn-group me-2" role="group" aria-label="Second group">
-          <form
-            action="/narratives/<%-narrative._id%>?_method=DELETE"
-            method="POST"
+    <div class="card">
+      <div class="card-body mt-1">
+        <h5 class="card-title">
+          <a
+            style="text-decoration: none; color: black"
+            href="students/<%-narrative.student%>"
+            ><%=students[students.findIndex(elt=> ""+elt._id ===
+            ""+narrative.student)].name%></a
           >
-            <button type="submit" class="btn btn-secondary">Delete</button>
-          </form>
+        </h5>
+        <div class="d-md-inline">
+          <% for( let category in students[students.findIndex(elt=> ""+elt._id
+          === ""+narrative.student)].categories ) { %>
+          <strong><%=category%></strong>: <%=students[students.findIndex(elt=>
+          ""+elt._id === ""+narrative.student)].categories[category]%> <% } %>
+        </div>
+        <p class="card-text"><%=narrative.text%></p>
+        <div
+          class="btn-toolbar"
+          role="toolbar"
+          aria-label="Toolbar with button groups"
+        >
+          <div class="btn-group me-2" role="group" aria-label="First group">
+            <form action="/narratives/<%-narrative._id%>" method="get">
+              <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+          </div>
+          <div class="btn-group me-2" role="group" aria-label="Second group">
+            <form
+              action="/narratives/<%-narrative._id%>?_method=DELETE"
+              method="POST"
+            >
+              <button type="submit" class="btn btn-secondary">Delete</button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <% }) %> <% } %>
-  <div class="d-flex justify-content-center mt-4">
-    <form action="/narratives/new" method="GET">
-      <button class="btn btn-primary" type="submit">Add a Narrative</button>
-    </form>
+    <% }) %> <% } %>
+    <div class="d-flex justify-content-center mt-4">
+      <form action="/narratives/new" method="GET">
+        <button class="btn btn-primary" type="submit">Add a Narrative</button>
+      </form>
+    </div>
   </div>
 </section>
 <!-- Footer-->

@@ -7,53 +7,58 @@
 </header>
 <!-- Services-->
 <section class="page-section" id="students">
-  <% if (students.length>0) { %>
-  <h3>List of Students</h3>
-  <div class="accordion" id="accordionStudent">
-    <% students.forEach(student => { %>
+  <div class="container">
+    <% if (students.length>0) { %>
+    <h3>List of Students</h3>
+    <div class="accordion" id="accordionStudent">
+      <% students.forEach(student => { %>
 
-    <div class="accordion-item">
-      <h2 class="accordion-header">
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <div
+            class="btn-toolbar"
+            role="toolbar"
+            aria-label="Toolbar with button groups"
+          >
+            <div class="btn-group" role="group" aria-label="Group">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapse<%-student._id%>"
+                aria-expanded="false"
+                aria-controls="collapse"
+              >
+                <%=student.name%>
+              </button>
+            </div>
+          </div>
+        </h2>
         <div
-          class="btn-toolbar"
-          role="toolbar"
-          aria-label="Toolbar with button groups"
+          id="collapse<%-student._id%>"
+          class="accordion-collapse collapse"
+          aria-labelledby="headingTwo"
+          data-bs-parent="#accordionStudent"
         >
-          <div class="btn-group" role="group" aria-label="Group">
-            <button
-              class="accordion-button collapsed"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapse<%-student._id%>"
-              aria-expanded="false"
-              aria-controls="collapse"
-            >
-              <%=student.name%>
-            </button>
-          </div>
-        </div>
-      </h2>
-      <div
-        id="collapse<%-student._id%>"
-        class="accordion-collapse collapse"
-        aria-labelledby="headingTwo"
-        data-bs-parent="#accordionStudent"
-      >
-        <div class="accordion-body">
-          <div>
-            Grade: <%=student.grade%>
-          </div>
-          
-          <div class="d-md-inline">
-            <% for( let category in student.categories ) { %>
-            <strong><%=category%></strong>: <%=student.categories[category]%> <%
-            } %>
-          </div>
-          <ul>
-            <% studentNarratives[student.name].forEach(narrative => { %>
-            <li><%=narrative.text%></li>
-            <% }) %>
-          </ul>
+          <div class="accordion-body">
+            <div>Grade: <%=student.grade%></div>
+
+            <div class="d-md-inline">
+              <% for( let category in student.categories ) { %>
+              <strong><%=category%></strong>: <%=student.categories[category]%>
+              <% } %>
+            </div>
+            <ul>
+              <% studentNarratives[student.name].forEach(narrative => { %>
+              <li><%=narrative.text%></li>
+              <% }) %>
+            </ul>
+
+            <form action="students/<%-student._id%>" method="GET">
+              <button type="submit" class="btn btn-sm btn-secondary">
+                Update <%=student.name%>
+              </button>
+            </form>
 
             <form
               action="/students/<%-student._id%>?_method=DELETE"
@@ -110,20 +115,17 @@
               </div>
             </form>
 
-            <form action="students/<%-student._id%>" method="GET">
-              <button type="submit" class="btn btn-sm btn-secondary">
-                Update <%=student.name%>
-              </button>
-            </form>
+            
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <% }) %> <% } %>
-  <div class="d-flex justify-content-center mt-4">
-    <form action="/students/new">
-      <button class="btn btn-primary">Add a student</button>
-    </form>
+    <% }) %> <% } %>
+    <div class="d-flex justify-content-center mt-4">
+      <form action="/students/new">
+        <button class="btn btn-primary">Add a student</button>
+      </form>
+    </div>
   </div>
 </section>
 <!-- Footer-->

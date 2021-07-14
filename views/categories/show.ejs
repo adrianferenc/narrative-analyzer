@@ -7,9 +7,10 @@
 </header>
 <!-- Services-->
 <section class="page-section" id="students">
-  <p>This is <%=title%></p>
+  <div class="container">
+  <h4>This is <%=title%></h4>
 
-  <h3>List of <%=title%>s</h3>
+  <h5>List of <%=title%>s</h5>
 
   <ul>
     <% category.subcategories.forEach(subcategory => { %>
@@ -63,6 +64,7 @@
       </div>
     </div>
   </div>
+</div>
 </section>
 <!-- Footer-->
 <%- include('../partials/footer') %>

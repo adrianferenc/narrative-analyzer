@@ -31,7 +31,7 @@ async function analyze(req, res) {
       const assignedCategories = student.categories;
 
       const narrativeTextStripped = (narrativeText + ".")
-        .replace(/\.{3}|\,|\;|\(|\)|\"|\`/gm, '') //removes commas, colons, semicolons, parentheses, quotes, and ellipses
+        .replace(/\.{3}|\,|\;|\(|\)|\"|\`/gm, "") //removes commas, colons, semicolons, parentheses, quotes, and ellipses
         .replace(/\s+|-/gm, ` `) // reduces all multiple spaces or dashes to a single space
         .replace(/[\.!?]+/gm, `.`) //changes ! and ? to .
         .toLowerCase();
@@ -62,7 +62,7 @@ async function analyze(req, res) {
         wordCount,
         sentenceCount,
       };
-      if (result.length > 0) {        
+      if (result.length > 0) {
         await Result.findByIdAndUpdate(result[0]._id, resultObject);
       } else {
         newResult = await Result.create(resultObject);

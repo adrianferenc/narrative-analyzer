@@ -7,7 +7,8 @@
 </header>
 <!-- Services-->
 <section class="page-section" id="results">
-  <p>Select the categories you would like to have compared:</p>
+  <div class="container">
+  <h3>Select the categories you would like to have compared:</h3>
   <form action="/results/" method="POST">
     <div>
       <% categories.forEach((category,idx) => { %>
@@ -27,6 +28,7 @@
     </div>
     <button type="submit" class="btn btn-primary">View Results</button>
   </form>
+</div>
 </section>
 <!-- Footer-->
 <%- include('../partials/footer') %>
