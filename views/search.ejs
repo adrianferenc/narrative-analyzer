@@ -10,29 +10,37 @@
   <div class="container">
     <div>
       <% if (foundStudents.length>0) { %>
-        <h3 class="d-flex justify-content-center">Students Found</h3>
-        <% foundStudents.forEach(student => { %>
-         <ul class="list-group list-group-flush">
-           <li class="list-group-item">
-             <a href = "/students/<%=student._id%>"><%=student.name%></a>
-           </li>
-         </ul>
-        <% }) %>
-      <% } %>
+      <h3 class="d-flex justify-content-center">Students Found</h3>
+      <% foundStudents.forEach(student => { %>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <a
+            class="d-flex justify-content-center my-2"
+            href="/students/<%=student._id%>"
+            ><%=student.name%></a
+          >
+        </li>
+      </ul>
+      <% }) %> <% } %>
     </div>
 
     <div>
       <% if (foundNarratives.length>0) { %>
-        <h3 class="d-flex justify-content-center">Narratives Found</h3>
-        <% foundNarratives.forEach(narrative => { %>
-         <ul class="list-group list-group-flush">
-           <li class="list-group-item">
-             <a class ="d-flex justify-content-center" href = "/students/<%=narrative.student%>"><%=foundNarrativeNames[narrative.student]%></a>
-             <p class ="d-flex justify-content-center"><%=narrative.text%></p>
-           </li>
-         </ul>
-        <% }) %>
-      <% } %>
+      <h3 class="d-flex justify-content-center">Narratives Found</h3>
+      <% foundNarratives.forEach(narrative => { %>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <div class="my-2">
+            <a
+              class="d-flex justify-content-center mb-1"
+              href="/students/<%=narrative.student%>"
+              ><%=foundNarrativeNames[narrative.student]%></a
+            >
+            <p class="d-flex justify-content-center"><%=narrative.text%></p>
+          </div>
+        </li>
+      </ul>
+      <% }) %> <% } %>
     </div>
   </div>
 </section>
