@@ -10,7 +10,7 @@ module.exports = {
   show,
   delete: deleteStudent,
   update,
-  updateGrade
+  updateGrade,
 };
 
 async function index(req, res) {
@@ -118,7 +118,7 @@ async function update(req, res) {
 async function updateGrade(req, res) {
   try {
     const student = await Student.findById(req.params.id);
-    if (req.body.grade !=='Enter a grade'){
+    if (req.body.grade !== "Enter a grade") {
       student.grade = req.body.grade;
       student.save();
     }

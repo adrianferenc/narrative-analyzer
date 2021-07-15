@@ -36,7 +36,8 @@ router.get("/search", async function (req, res) {
 
   res.render("search.ejs", {
     title: "Search Results",
-    navKey: "home",
+    navKey: "search",
+    query,
     foundStudents,
     foundNarratives,
     foundNarrativeNames,
