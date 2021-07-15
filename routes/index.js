@@ -25,12 +25,11 @@ router.get("/search", async function (req, res) {
 
   const foundNarratives = await Narrative.find({
     text: { $regex: query, $options: "i" },
-  })
-
+  });
 
   const foundNarrativeNames = {};
 
-  for (narrative of foundNarratives){
+  for (narrative of foundNarratives) {
     let thisStudent = await Student.findById(narrative.student);
     foundNarrativeNames[narrative.student] = thisStudent.name;
   }
@@ -40,7 +39,7 @@ router.get("/search", async function (req, res) {
     navKey: "home",
     foundStudents,
     foundNarratives,
-    foundNarrativeNames
+    foundNarrativeNames,
   });
 });
 

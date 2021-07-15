@@ -21,7 +21,6 @@ async function index(req, res) {
 }
 
 async function create(req, res) {
-  console.log(req.body);
   try {
     const newCategory = await Category.create(req.body);
     res.redirect(`/categories/${newCategory._id}`);

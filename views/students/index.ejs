@@ -69,13 +69,13 @@
                 type="button"
                 class="btn btn-danger btn-sm"
                 data-bs-toggle="modal"
-                data-bs-target="#deleteModal"
+                data-bs-target="#deleteModal<%-student._id%>"
               >
                 Delete
               </button>
               <div
                 class="modal fade"
-                id="deleteModal"
+                id="deleteModal<%-student._id%>"
                 data-bs-backdrop="static"
                 data-bs-keyboard="false"
                 tabindex="-1"
@@ -108,7 +108,7 @@
                         Close
                       </button>
                       <button type="submit" class="btn btn-danger">
-                        Delete Student
+                        Delete <%=student.name%>
                       </button>
                     </div>
                   </div>

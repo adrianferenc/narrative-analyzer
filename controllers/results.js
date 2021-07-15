@@ -31,7 +31,7 @@ async function analyze(req, res) {
       const assignedCategories = student.categories;
 
       const narrativeTextStripped = (narrativeText + ".")
-        .replace(/\.{3}|\,|\;|\(|\)|\"|\`/gm, "") //removes commas, colons, semicolons, parentheses, quotes, and ellipses
+        .replace(/\.{3}|\,|\;|:|\(|\)|\"|\`/gm, "") //removes commas, colons, semicolons, parentheses, quotes, and ellipses
         .replace(/\s+|-/gm, ` `) // reduces all multiple spaces or dashes to a single space
         .replace(/[\.!?]+/gm, `.`) //changes ! and ? to .
         .toLowerCase();
@@ -51,7 +51,6 @@ async function analyze(req, res) {
       });
 
       const result = await Result.find({ narrativeId });
-      console.log(result);
       const resultObject = {
         studentId,
         studentName,

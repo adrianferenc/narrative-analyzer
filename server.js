@@ -4,7 +4,8 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const methodOverride = require("method-override");
-require('dotenv').config();
+
+require("dotenv").config();
 require("./config/database");
 
 const indexRouter = require("./routes/index");
@@ -15,7 +16,6 @@ const categoriesRouter = require("./routes/categories");
 const studentsRouter = require("./routes/students");
 
 const app = express();
-
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
