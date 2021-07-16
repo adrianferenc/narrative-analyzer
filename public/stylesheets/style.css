@@ -11354,3 +11354,7 @@ a.services {
 .bottom-space {
   margin-bottom: 30px;
 }
+
+#google-login:hover {
+transform: scale(1.015);
+}
