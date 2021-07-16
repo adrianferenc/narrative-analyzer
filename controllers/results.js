@@ -72,15 +72,15 @@ async function analyze(req, res) {
 
     const dimensions = Object.values(req.body);
 
-    const arraysOfapplicableSubcategories = [];
+    const arraysOfApplicableSubcategories = [];
     for (let i = 0; i < dimensions.length; i++) {
       let particularQuery = {};
       particularQuery.name = dimensions[i];
       let particularCategory = await Category.find(particularQuery);
-      arraysOfapplicableSubcategories.push(particularCategory[0].subcategories);
+      arraysOfApplicableSubcategories.push(particularCategory[0].subcategories);
     }
     const allPossibleCombinations = setProduct(
-      ...arraysOfapplicableSubcategories
+      ...arraysOfApplicableSubcategories
     );
 
     for (let combination of allPossibleCombinations) {
