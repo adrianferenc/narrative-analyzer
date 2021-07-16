@@ -1,8 +1,11 @@
 const express = require("express");
 const router = express.Router();
+const passport = require("passport");
 const Student = require("../models/student");
+const User = require("../models/user");
 const Narrative = require("../models/narrative");
 const Category = require("../models/category");
+
 
 /* GET home page. */
 router.get("/", function (req, res) {
@@ -33,7 +36,6 @@ router.get("/search", async function (req, res) {
     let thisStudent = await Student.findById(narrative.student);
     foundNarrativeNames[narrative.student] = thisStudent.name;
   }
-
   res.render("search.ejs", {
     title: "Search Results",
     navKey: "search",
@@ -42,6 +44,24 @@ router.get("/search", async function (req, res) {
     foundNarratives,
     foundNarrativeNames,
   });
+});
+
+router.get('/auth/google', passport.authenticate(
+  'google',
+  { scope: ['profile', 'email'] }
+));
+
+router.get('/oauth2callback', passport.authenticate(
+  'google',
+  {
+    successRedirect : '/',
+    failureRedirect : '/'
+  }
+));
+
+router.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
 });
 
 module.exports = router;
