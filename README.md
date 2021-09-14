@@ -25,7 +25,7 @@ The App in action:
 
 ### Technologies Used:
 
-Node.js, Express, Mongoose/MongoDB, Javascript, HTML, Bootstrap, CSS
+Node.js, Express, Mongoose/MongoDB, EJS, Javascript, HTML, Bootstrap, CSS
 
 
 ### Getting Started:
